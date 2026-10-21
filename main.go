@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -17,6 +18,22 @@ import (
 	"golang.org/x/oauth2"
 	"golang.org/x/oauth2/clientcredentials"
 )
+
+// noTimestampWriterSink removes the default lager timestamp while keeping the
+// rest of the JSON payload intact.
+type noTimestampWriterSink struct {
+	writer      io.Writer
+	minLogLevel lager.LogLevel
+}
+
+func (sink noTimestampWriterSink) Log(log lager.LogFormat) {
+	if log.LogLevel < sink.minLogLevel {
+		return
+	}
+
+	log.Timestamp = ""
+	_, _ = sink.writer.Write(append(log.ToJSON(), '\n'))
+}
 
 type Config struct {
 	UAAAddress           string `envconfig:"uaa_address" required:"true"`
@@ -45,7 +62,10 @@ func NewClient(config Config) *http.Client {
 
 func main() {
 	logger := lager.NewLogger("uaa-credentials-broker")
-	logger.RegisterSink(lager.NewWriterSink(os.Stderr, lager.INFO))
+	logger.RegisterSink(noTimestampWriterSink{
+		writer:      os.Stderr,
+		minLogLevel: lager.INFO,
+	})
 
 	config := Config{}
 	err := envconfig.Process("", &config)
