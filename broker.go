@@ -9,7 +9,6 @@ import (
 	"code.cloudfoundry.org/lager"
 	"github.com/pivotal-cf/brokerapi"
 
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"strings"
@@ -47,7 +46,7 @@ func (b *DeployerAccountBroker) Services(context context.Context) []brokerapi.Se
 	var services []brokerapi.Service
 	pwd, _ := os.Getwd()
 
-	buf, err := ioutil.ReadFile(filepath.Join(pwd, "config.json"))
+	buf, err := os.ReadFile(filepath.Join(pwd, "config.json"))
 	if err != nil {
 		b.logger.Error("services", err)
 		return []brokerapi.Service{}
@@ -194,8 +193,6 @@ func (b *DeployerAccountBroker) Bind(
 	default:
 		return brokerapi.Binding{}, fmt.Errorf("Service ID %s not found", details.ServiceID)
 	}
-
-	return brokerapi.Binding{}, nil
 }
 
 func (b *DeployerAccountBroker) Unbind(
