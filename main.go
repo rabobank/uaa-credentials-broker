@@ -40,6 +40,7 @@ type Config struct {
 	UAAClientID          string `envconfig:"uaa_client_id" required:"true"`
 	UAAClientSecret      string `envconfig:"uaa_client_secret" required:"true"`
 	UAAZone              string `envconfig:"uaa_zone" default:"uaa"`
+	UAAOrigin            string `envconfig:"uaa_origin" default:"uaa"`
 	CFAddress            string `envconfig:"cf_address" required:"true"`
 	BrokerUsername       string `envconfig:"broker_username" required:"true"`
 	BrokerPassword       string `envconfig:"broker_password" required:"true"`

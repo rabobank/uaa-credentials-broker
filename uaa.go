@@ -19,6 +19,7 @@ type User struct {
 	Password string  `json:"password,omitempty"`
 	Active   bool    `json:"active,omitempty"`
 	Emails   []Email `json:"emails"`
+	Origin   string  `json:"origin,omitempty"`
 }
 
 type Clients struct {

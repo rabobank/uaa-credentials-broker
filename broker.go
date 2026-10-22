@@ -122,11 +122,7 @@ func parseBindOptions(details brokerapi.BindDetails) (BindOptions, error) {
 	return opts, nil
 }
 
-func (b *DeployerAccountBroker) Bind(
-	context context.Context,
-	instanceID, bindingID string,
-	details brokerapi.BindDetails,
-) (brokerapi.Binding, error) {
+func (b *DeployerAccountBroker) Bind(context context.Context, instanceID, bindingID string, details brokerapi.BindDetails) (brokerapi.Binding, error) {
 	password := b.generatePassword(b.config.PasswordLength)
 
 	switch details.ServiceID {
@@ -293,6 +289,7 @@ func (b *DeployerAccountBroker) provisionUser(userID, password string) (User, er
 	user := User{
 		UserName: userID,
 		Password: password,
+		Origin:   b.config.UAAOrigin,
 		Emails: []Email{{
 			Value:   b.config.EmailAddress,
 			Primary: true,
