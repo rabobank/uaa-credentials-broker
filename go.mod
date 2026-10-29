@@ -2,6 +2,8 @@ module github.com/cloud-gov/uaa-credentials-broker
 
 go 1.26.0
 
+replace golang.org/x/crypto => golang.org/x/crypto v0.58.0
+
 require (
 	code.cloudfoundry.org/lager v2.0.0+incompatible
 	github.com/cloudfoundry/go-cfclient/v3 v3.0.0-beta.1
@@ -27,7 +29,7 @@ require (
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/stretchr/objx v0.8.0 // indirect
 	go.yaml.in/yaml/v3 v3.0.5 // indirect
-	golang.org/x/net v0.61.0 // indirect
+	golang.org/x/net v0.62.0 // indirect
 	golang.org/x/sys v0.49.0 // indirect
 	golang.org/x/text v0.43.0 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
