@@ -3,8 +3,11 @@ module github.com/cloud-gov/uaa-credentials-broker
 go 1.26.0
 
 replace (
+	golang.org/x/crypto => golang.org/x/crypto v0.56.0
 	golang.org/x/mod => golang.org/x/mod v0.40.0
-	google.golang.org/protobuf => google.golang.org/protobuf v1.34.0
+	golang.org/x/net => golang.org/x/net v0.62.0
+	golang.org/x/text => golang.org/x/text v0.43.0
+	google.golang.org/protobuf => google.golang.org/protobuf v1.36.12
 	gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.2.4
 )
 
