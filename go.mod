@@ -2,7 +2,11 @@ module github.com/cloud-gov/uaa-credentials-broker
 
 go 1.26.0
 
-replace golang.org/x/crypto => golang.org/x/crypto v0.58.0
+replace (
+	golang.org/x/mod => golang.org/x/mod v0.40.0
+	google.golang.org/protobuf => google.golang.org/protobuf v1.34.0
+	gopkg.in/yaml.v2 => gopkg.in/yaml.v2 v2.2.4
+)
 
 require (
 	code.cloudfoundry.org/lager v2.0.0+incompatible
@@ -12,7 +16,7 @@ require (
 	github.com/onsi/gomega v1.44.0
 	github.com/pivotal-cf/brokerapi v0.0.0-20170523133650-6d25b9398d9f
 	github.com/stretchr/testify v1.12.1
-	golang.org/x/oauth2 v0.37.0
+	golang.org/x/oauth2 v0.38.0
 )
 
 require (
@@ -28,9 +32,9 @@ require (
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
 	github.com/pborman/uuid v1.2.1 // indirect
 	github.com/stretchr/objx v0.8.0 // indirect
-	go.yaml.in/yaml/v3 v3.0.5 // indirect
+	go.yaml.in/yaml/v3 v3.0.6 // indirect
 	golang.org/x/net v0.62.0 // indirect
-	golang.org/x/sys v0.49.0 // indirect
+	golang.org/x/sys v0.50.0 // indirect
 	golang.org/x/text v0.43.0 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 )
